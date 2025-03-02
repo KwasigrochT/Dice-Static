@@ -32,13 +32,14 @@
                     console.error("Error waking up server", error)
                 }
             }
+            document.addEventListener("DOMContentLoaded", wakeUpServer)
 
             document.getElementById("rollDiceBtn").addEventListener("click", async () => {
                 try {
                     let response = await fetch(`https://kwasigroch-dice-server-cpctbraaenf6egd7.centralus-01.azurewebsites.net/roll-dice`)
                     let data = await response.json()
                      document.getElementById("result").textContent = 
-                        `You rolled: ${data.dice.join(", ")})`
+                        `${data.dice.join(", ")}`
                 } catch (error) {
                     console.error("Error", error)
                     document.getElementById("result").textContent = "Failed to roll dice"
